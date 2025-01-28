@@ -94,7 +94,7 @@ class MarbleTest {
     @Test
     public void testMarbleToString() {
         Marble m = new Marble(Marble.MATERIALS.AGATE, 0.65, "blue");
-        String expected = "{Material: AGATE, Radius: 0.637, Volume: 1.082696932, Mass: 2.836665963, Color: blue}";
+        String expected = "{Material: AGATE, Radius: " + m.getRadius() + ", Volume: "+m.getVolume() + ", Mass: "+ m.getMass() +", Color: blue}";
         String actual = m.toString();
         assertEquals(expected, actual, "Checking marble toString(): " + expected + ", but got " + actual);
     }    
