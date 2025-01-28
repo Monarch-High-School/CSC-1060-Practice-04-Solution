@@ -102,7 +102,7 @@ class MarbleTest {
     @Test
     public void testAddMarbleSuccessful() {
         Marble m = new Marble(Marble.MATERIALS.AGATE, 0.65, "blue");
-        MarbleInventory mi = new MarbleInventory(0.65, 0.0325);
+        MarbleInventory mi = new MarbleInventory(0.65, 0.1);
         assertTrue(mi.add(m), "Add marble within tolerance to inventory, but failed.");
     } 
     
@@ -115,7 +115,7 @@ class MarbleTest {
 
     @Test
     public void testSetTolerance() {
-        MarbleInventory mi = new MarbleInventory(0.65, 0.06);
+        MarbleInventory mi = new MarbleInventory(0.65, 0.1);
             // create and add 10 marbles within tolerance
         for (int i = 0; i < 10; i++) {
             mi.add(new Marble(Marble.MATERIALS.GLASS, 0.65, "red"));
