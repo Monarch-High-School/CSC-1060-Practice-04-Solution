@@ -64,11 +64,11 @@ public class Marble {
      */
     public String getMaterial() {
         switch(material) {
-            case MATERIALS.GLASS:
+            case GLASS:
                 return "GLASS";
-            case MATERIALS.AGATE:
+            case AGATE:
                 return "AGATE";
-            case MATERIALS.PLASTIC:
+            case PLASTIC:
                 return "PLASTIC";
             default:
                 return "";
