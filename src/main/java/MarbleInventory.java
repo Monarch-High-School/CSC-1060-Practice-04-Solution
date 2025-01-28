@@ -28,7 +28,7 @@ public class MarbleInventory {
     public int getSize() {
         return inventory.size();
     }
-    
+
     public double getTargetRadius() {
         return targetRadius;
     }
@@ -71,7 +71,7 @@ public class MarbleInventory {
             Marble m = inventory.get(i);
                 // check if the radius is outside the accepted tolerance
             if (Math.abs(m.getRadius()-targetRadius) > tolerance) {
-                removed.add(m);
+                removed.add(0, m);
                 inventory.remove(i);
             }
         }
@@ -89,7 +89,7 @@ public class MarbleInventory {
             Marble m = inventory.get(i);
                 // check if color matches
             if (m.getColor().equals(c)) {
-                removed.add(m);
+                removed.add(0, m);
                 inventory.remove(i);
             }
         }
