@@ -1,0 +1,160 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Test Marble Constants
+      id: test-marble-constants
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble Constants
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testConstants
+        timeout: 2
+        max-score: 1
+    - name: Test Marble Inventory Constructor
+      id: test-marble-inventory-constructor
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble Inventory Constructor
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleInventoryConstructor
+        timeout: 2
+        max-score: 1
+    - name: Test Marble getMaterial
+      id: test-marble-getmaterial
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble getMaterial
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleGetMaterial
+        timeout: 2
+        max-score: 1
+    - name: Test Marble getRadius
+      id: test-marble-getradius
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble getRadius
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleGetRadius
+        timeout: 2
+        max-score: 1
+    - name: Test Marble getVolume
+      id: test-marble-getvolume
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble getVolume
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleGetVolume
+        timeout: 2
+        max-score: 1
+    - name: Test Marble getMass (Agate)
+      id: test-marble-getmass-agate
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble getMass (Agate)
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleGetMassAgate
+        timeout: 2
+        max-score: 1
+    - name: Test Marble getMass (Glass)
+      id: test-marble-getmass-glass
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble getMass (Glass)
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleGetMassGlass
+        timeout: 2
+        max-score: 1
+    - name: Test Marble getMass (Plastic)
+      id: test-marble-getmass-plastic
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble getMass (Plastic)
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleGetMassPlastic
+        timeout: 2
+        max-score: 1
+    - name: Test Marble getColor
+      id: test-marble-getcolor
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble getColor
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleGetColor
+        timeout: 2
+        max-score: 1
+    - name: Test Marble toString
+      id: test-marble-tostring
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test Marble toString
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testMarbleToString
+        timeout: 2
+        max-score: 1
+    - name: Test MarbleInventory Add Successful
+      id: test-marbleinventory-add-successful
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test MarbleInventory Add Successful
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testAddMarbleSuccessful
+        timeout: 2
+        max-score: 1
+    - name: Test MarbleInventory Add Unsuccessful
+      id: test-marbleinventory-add-unsuccessful
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test MarbleInventory Add Unsuccessful
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testAddMarbleUnsuccessful
+        timeout: 2
+        max-score: 1
+    - name: Test MarbleInventory setTolerance
+      id: test-marbleinventory-settolerance
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test MarbleInventory setTolerance
+        setup-command: ''
+        command: gradle test --tests MarbleTest.testSetTolerance
+        timeout: 2
+        max-score: 1
+    - name: Test MarbleInventory removeByColor
+      id: test-marbleinventory-removebycolor
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test MarbleInventory removeByColor
+        setup-command: ''
+        command: gradle test --tests MarbleTest.removeByColor
+        timeout: 2
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST-MARBLE-CONSTANTS_RESULTS: "${{steps.test-marble-constants.outputs.result}}"
+        TEST-MARBLE-INVENTORY-CONSTRUCTOR_RESULTS: "${{steps.test-marble-inventory-constructor.outputs.result}}"
+        TEST-MARBLE-GETMATERIAL_RESULTS: "${{steps.test-marble-getmaterial.outputs.result}}"
+        TEST-MARBLE-GETRADIUS_RESULTS: "${{steps.test-marble-getradius.outputs.result}}"
+        TEST-MARBLE-GETVOLUME_RESULTS: "${{steps.test-marble-getvolume.outputs.result}}"
+        TEST-MARBLE-GETMASS-AGATE_RESULTS: "${{steps.test-marble-getmass-agate.outputs.result}}"
+        TEST-MARBLE-GETMASS-GLASS_RESULTS: "${{steps.test-marble-getmass-glass.outputs.result}}"
+        TEST-MARBLE-GETMASS-PLASTIC_RESULTS: "${{steps.test-marble-getmass-plastic.outputs.result}}"
+        TEST-MARBLE-GETCOLOR_RESULTS: "${{steps.test-marble-getcolor.outputs.result}}"
+        TEST-MARBLE-TOSTRING_RESULTS: "${{steps.test-marble-tostring.outputs.result}}"
+        TEST-MARBLEINVENTORY-ADD-SUCCESSFUL_RESULTS: "${{steps.test-marbleinventory-add-successful.outputs.result}}"
+        TEST-MARBLEINVENTORY-ADD-UNSUCCESSFUL_RESULTS: "${{steps.test-marbleinventory-add-unsuccessful.outputs.result}}"
+        TEST-MARBLEINVENTORY-SETTOLERANCE_RESULTS: "${{steps.test-marbleinventory-settolerance.outputs.result}}"
+        TEST-MARBLEINVENTORY-REMOVEBYCOLOR_RESULTS: "${{steps.test-marbleinventory-removebycolor.outputs.result}}"
+      with:
+        runners: test-marble-constants,test-marble-inventory-constructor,test-marble-getmaterial,test-marble-getradius,test-marble-getvolume,test-marble-getmass-agate,test-marble-getmass-glass,test-marble-getmass-plastic,test-marble-getcolor,test-marble-tostring,test-marbleinventory-add-successful,test-marbleinventory-add-unsuccessful,test-marbleinventory-settolerance,test-marbleinventory-removebycolor
