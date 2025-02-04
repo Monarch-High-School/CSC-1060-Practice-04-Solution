@@ -136,7 +136,7 @@ jobs:
       with:
         test-name: Test MarbleInventory removeByColor
         setup-command: ''
-        command: gradle test --tests MarbleTest.removeByColor
+        command: gradle test --tests MarbleTest.testRemoveByColor
         timeout: 2
         max-score: 1
     - name: Autograding Reporter
